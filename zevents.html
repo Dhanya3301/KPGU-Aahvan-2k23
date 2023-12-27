@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>The inevitable hybrid reality.</title>
+    <link rel="stylesheet" href="css/test.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/events.css" />
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3pro.css">
+
+<body style="background-color: #272935; color: white;">
+
+    <h1 class="page-heading">Aahvan 2023 || Team</h1>
+    <hr>
+
+    <div class="viewport">
+
+        <div class="scene3D-container">
+
+            <div class="scene3D">
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="posi">
+                        <div class="card h-100 sponsor-cards per">
+                            <img src="img/FullSizeRender.jpg" class="card-img-top" alt="Blogging Partner">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: red; ">Blogging Partner</h2>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Etc.-->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        let cards = [];
+
+        const perspectiveOrigin = {
+            x: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scenePerspectiveOriginX")),
+            y: parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scenePerspectiveOriginY")),
+            maxGap: 10
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            cards = document.querySelectorAll(".scene3D > div");
+            window.addEventListener("scroll", moveCamera);
+            window.addEventListener("mousemove", moveCameraAngle);
+            setSceneHeight();
+        });
+
+        function moveCameraAngle(event) {
+            const xGap = (event.clientX - window.innerWidth / 2) * 100 / (window.innerWidth / 2) * -1;
+            const yGap = (event.clientY - window.innerHeight / 2) * 100 / (window.innerHeight / 2) * -1;
+            const newPerspectiveOriginX = perspectiveOrigin.x + xGap * perspectiveOrigin.maxGap / 100;
+            const newPerspectiveOriginY = perspectiveOrigin.y + yGap * perspectiveOrigin.maxGap / 100;
+
+            document.documentElement.style.setProperty("--scenePerspectiveOriginX", newPerspectiveOriginX);
+            document.documentElement.style.setProperty("--scenePerspectiveOriginY", newPerspectiveOriginY);
+        }
+
+        function moveCamera() {
+            const scrollPosition = window.pageYOffset;
+            const horizontalScroll = window.pageXOffset; // Added for horizontal scroll
+
+            document.documentElement.style.setProperty("--cameraZ", scrollPosition);
+            document.documentElement.style.setProperty("--cameraX", horizontalScroll); // Set the horizontal scroll as camera X position
+        }
+
+        function setSceneHeight() {
+            const numberOfItems = cards.length;
+            const itemZ = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--itemZ"));
+            const scenePerspective = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--scenePerspective"));
+            const cameraSpeed = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--cameraSpeed"));
+
+            const height = window.innerHeight + scenePerspective * cameraSpeed + itemZ * cameraSpeed * numberOfItems;
+
+            document.documentElement.style.setProperty("--viewportHeight", height);
+        }
+    </script>
+
+</body>
+
+</html>
