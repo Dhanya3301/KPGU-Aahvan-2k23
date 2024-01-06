@@ -58,7 +58,7 @@
 
         canvas {
             /* background-image: linear-gradient(to right, red, blue); */
-            background-image: linear-gradient(to bottom right, rgb(192, 56, 102), rgb(43, 44, 111));
+            /*background-image: linear-gradient(to bottom right, red, yellow);*/
             width: 100%;
         }
 
@@ -73,7 +73,6 @@
             /*align-content: center;*/
             /* vertical-align: middle; */
             animation: zoomOut 1.5s ease forwards;
-            z-index: 501;
             top: 0;
             /*overflow: hidden;*/
             mix-blend-mode: multiply;
@@ -94,11 +93,12 @@
             max-height: 100%;
             max-width: 100%;
             min-width: 700px;
+            user-select: none;
         }
 
         @media only screen and (max-width: 767px) {
             .initial img {
-                margin-top: 150px;
+                margin: auto;
             }
         }
 
@@ -179,7 +179,7 @@
             </div>
     </nav> -->
     <canvas id='c'></canvas>
-    <div class="initial"><img src="img/AahvanTit.png"></div>
+    <!-- <div class="initial"><img src="img/AahvanTit.png"></div> -->
 
     <div class="component">
         <!--the-->

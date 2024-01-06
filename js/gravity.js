@@ -377,16 +377,21 @@ Particle.prototype = (function (o) {
     var cx = canvas.width * 1.5,
       cy = canvas.height * 1.5;
 
-    grad = context.createLinearGradient(
-      0,
-      0,
-      cx,
-      cy
-      //Math.sqrt(cx * cx + cy * cy)
-    );
+    grad = context.createLinearGradient(cx / 5, cy / 8, cx / 5, cy);
+    grad.addColorStop(0, "rgb(2, 1, 6)");
+    grad.addColorStop(1, "rgb(9, 63, 97)");
 
-    grad.addColorStop(0, "rgb(59,9,62)");
-    grad.addColorStop(1, "rgb(14,184,184)");
+    // grad = context.createRadialGradient(
+    //   cx / 4,
+    //   cy,
+    //   0,
+    //   cx / 3,
+    //   cy,
+    //   Math.sqrt((cx / 4) * (cx / 2) + cy * cy)
+    // );
+    // // grad.addColorStop(0, "rgb(9,63,97)");
+    // grad.addColorStop(0, "rgb(33,62,80)");
+    // grad.addColorStop(1, "rgb(2, 1, 6)");
   }
 
   function mouseMove(e) {
@@ -486,23 +491,22 @@ Particle.prototype = (function (o) {
 
   // GUI
 
-  gui = new dat.GUI();
-  gui
-    .add(control, "particleNum", 0, 500)
-    .step(1)
-    .name("Particle Num")
-    .onChange(function () {
-      var n = (control.particleNum | 0) - particles.length;
-      if (n > 0) addParticle(n);
-      else if (n < 0) removeParticle(-n);
-    });
-  gui
-    .add(GravityPoint, "interferenceToPoint")
-    .name("Interference Between Point");
-  gui.close();
+  // gui = new dat.GUI();
+  // gui
+  //   .add(control, "particleNum", 0, 500)
+  //   .step(1)
+  //   .name("Particle Num")
+  //   .onChange(function () {
+  //     var n = (control.particleNum | 0) - particles.length;
+  //     if (n > 0) addParticle(n);
+  //     else if (n < 0) removeParticle(-n);
+  //   });
+  // gui
+  //   .add(GravityPoint, "interferenceToPoint")
+  //   .name("Interference Between Point");
+  // gui.close();
 
   // Start Update
-
   var loop = function () {
     var i, len, g, p;
 
@@ -530,7 +534,6 @@ Particle.prototype = (function (o) {
     bufferCtx.fillRect(0, 0, screenWidth, screenHeight);
     bufferCtx.restore();
 
-    // パーティクルをバッファに描画
     // for (i = 0, len = particles.length; i < len; i++) {
     //     particles[i].render(bufferCtx);
     // }
@@ -556,7 +559,6 @@ Particle.prototype = (function (o) {
     bufferCtx.fill();
     bufferCtx.restore();
 
-    // バッファをキャンバスに描画
     context.drawImage(bufferCvs, 0, 0);
 
     requestAnimationFrame(loop);
